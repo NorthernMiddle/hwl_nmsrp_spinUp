@@ -36,10 +36,24 @@ competition Competition;
 //
 ////////////////////////////////////////////////////////////////////
 
-// Set voltage
-const int SCALE = 120;
+// Set Constant Integers
+const int SCALE = 120;      // Set Voltage
+const int DEADBAND = 15;    // Set DeadBand
+
+
+// Set tank drive voltage
+/*
 void set_tank(int l, int r) {
   LeftFront.spin(fwd, l * SCALE, voltageUnits::mV);
+  LeftBack.spin(fwd, l * SCALE, voltageUnits::mV);
+  RightFront.spin(fwd, r * SCALE, voltageUnits::mV);
+  RightBack.spin(fwd, r * SCALE, voltageUnits::mV);
+}
+*/
+
+// Set arcade drive voltage
+void set_drive_pow(int l, int r){
+  LeftFront.spin( fwd, l * SCALE, voltageUnits::mV );
   LeftBack.spin(fwd, l * SCALE, voltageUnits::mV);
   RightFront.spin(fwd, r * SCALE, voltageUnits::mV);
   RightBack.spin(fwd, r * SCALE, voltageUnits::mV);
