@@ -143,12 +143,19 @@ void usercontrol(void)
     // ........................................................................
 
     // tank drive (ternary motor commands)
-    // ternary motor commands - ref: https://renegaderobotics.org/ternary-operator-in-robotc/
-    int l_joy =
-        abs(Controller1.Axis3.value()) > 5 ? Controller1.Axis3.value() : 0;   // left joystick
-    int r_joy =
-        abs(Controller1.Axis2.value()) > 5 ? Controller1.Axis2.value() : 0;   // right joystick
+    // ternary motor commands -- ref: https://renegaderobotics.org/ternary-operator-in-robotc/
+    /*
+    int l_joy = abs(Controller1.Axis3.value()) > DEADBAND ? Controller1.Axis3.value() : 0;   // left joystick
+    int r_joy = abs(Controller1.Axis2.value()) > DEADBAND ? Controller1.Axis2.value() : 0;   // right joystick
     set_tank(l_joy, r_joy);
+    */
+    
+    // arcade drive - right joystick
+    // ternary motor commands -- ref: https://renegaderobotics.org/ternary-operator-in-robotc/
+    int l_joy = abs(Controller1.Axis2.value() + Controller1.Axis1.value() ) > DEADBAND ? Controller1.Axis2.value() + Controller1.Axis1.value() : 0;
+    int r_joy = abs(Controller1.Axis2.value() - Controller1.Axis1.value() ) > DEADBAND ? Controller1.Axis2.value() - Controller.Axis1.value() : 0;
+    set_drive_pow(l_joy, r_joy);
+    
 
     // intake
     if (Controller1.ButtonL1.pressing()) {
